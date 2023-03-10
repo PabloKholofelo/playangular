@@ -12,7 +12,7 @@ export class AppComponent {
   
   constructor(private http: HttpClient) {
     console.log("FD"); 
-    this.http.get<any>("https://jsonplaceholder.typicode.com/todos/1").subscribe((data: any) => {
+    this.http.get<any>(this.host + "/pokemon?offset=100&limit=100").subscribe((data: any) => {
      console.log(data); 
     })
   }
