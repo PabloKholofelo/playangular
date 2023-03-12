@@ -13,7 +13,7 @@ export class AppComponent {
   private host: string= 'http://pakapokemon-env.eba-hshdfk2s.eu-north-1.elasticbeanstalk.com';
   
   constructor(private http: HttpClient) {
-      getPokemonByName("ivysaur").subscribe(x => {
+      this.getPokemonByName("ivysaur").subscribe(x => {
         console.log(x);
       });
 //       this.getPokemons().pipe(switchMap(pokemons => {
