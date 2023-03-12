@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
+import { forkJoin, Observable } from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -12,28 +13,27 @@ export class AppComponent {
   private host: string= 'http://pakapokemon-env.eba-hshdfk2s.eu-north-1.elasticbeanstalk.com';
   
   constructor(private http: HttpClient) {
-    console.log("FD"); 
-      this.getPokemons.pipe(
-        switchMap(pokemons => {
-          // Create and initialize the array
-          const pokemonsArray$: Observable<any>[] = [];
-          pokemons.forEach(pokemon => {
-            const pokemon$: Observable<any> = getPokemonByName(pokemons.name);
-            pokemonsArray$.push(pokemon$);
-          });
-          
-          return forkJoin(pokemonsArray$);
-        })
-        }).subscribe(x => {
-          console.log(x) 
+
+      this.getPokemons().pipe(switchMap(pokemons => {
+        const pokemonsArray$: Observable<any>[] = [];
+        
+        pokemons.forEach((pokemon: any) => {
+          const pokemon$: Observable<any> = this.getPokemonByName(pokemon.name);
+          pokemonsArray$.push(pokemon$);
+        });
+        
+        return forkJoin(pokemons);
+      })).subscribe(data => { 
+        console.log(data)
       });
+
   }
   
 
   private getPokemons() {
-    this.http.get<any>(this.host + "/pokemon?offset=100&limit=100")
- }
+    return this.http.get<any>(this.host + "/pokemon?offset=100&limit=100")
+  }
   private getPokemonByName(name: string) {
-      this.http.get<any>(this.host + "/pokemon/ + name);
+      return this.http.get<any>(this.host + "/pokemon/" + name);
   }
 }
