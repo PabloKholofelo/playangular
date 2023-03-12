@@ -33,7 +33,7 @@ export class AppComponent {
   
 
   private getPokemons() {
-    return this.http.get<any>(this.host + "/pokemon?offset=10limit=10)
+    return this.http.get<any>(this.host + "/pokemon?offset=10limit=10")
   }
   private getPokemonByName(name: string) {
       return this.http.get<any>("https://cors-anywhere.herokuapp.com/" + this.host + "/pokemon/" + name);
