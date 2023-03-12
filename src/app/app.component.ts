@@ -22,7 +22,7 @@ export class AppComponent {
           pokemonsArray$.push(pokemon$);
         });
         
-        return forkJoin(pokemons);
+        return forkJoin(pokemonsArray$);
       })).subscribe(data => { 
         console.log(data)
       });
