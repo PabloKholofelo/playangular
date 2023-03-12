@@ -17,7 +17,7 @@ export class AppComponent {
       this.getPokemons().pipe(switchMap(pokemons => {
         const pokemonsArray$: Observable<any>[] = [];
         
-        pokemons.forEach((pokemon: any) => {
+        pokemons.results.forEach((pokemon: any) => {
           const pokemon$: Observable<any> = this.getPokemonByName();
           pokemonsArray$.push(pokemon$);
         });
@@ -34,6 +34,6 @@ export class AppComponent {
     return this.http.get<any>(this.host + "/pokemon?offset=100&limit=100")
   }
   private getPokemonByName() {
-      return this.http.get<any>(this.host + "/pokemon/" + "name");
+      return this.http.get<any>(this.host + "/pokemon/" + "charmeleon");
   }
 }
