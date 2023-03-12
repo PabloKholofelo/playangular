@@ -10,7 +10,7 @@ import { forkJoin, Observable } from "rxjs";
 })
 export class AppComponent {
   title = 'the GCU Cloud Test App';
-  private host: string= 'http://pakapokemon-env.eba-hshdfk2s.eu-north-1.elasticbeanstalk.com';
+  private host: string= 'https://pakapokemon-env.eba-hshdfk2s.eu-north-1.elasticbeanstalk.com';
   
   constructor(private http: HttpClient) {
       this.getPokemonByName("ivysaur").subscribe(x => {
