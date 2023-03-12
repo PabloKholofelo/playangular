@@ -17,7 +17,7 @@ export class AppComponent {
       this.getPokemons().pipe(switchMap(pokemons => {
         const pokemonsArray$: Observable<any>[] = [];
         
-        pokemons.forEach((pokemon: any) => {
+        pokemons.results.forEach((pokemon: any) => {
           const pokemon$: Observable<any> = this.getPokemonByName(pokemon.name);
           pokemonsArray$.push(pokemon$);
         });
