@@ -18,7 +18,7 @@ export class AppComponent {
         const pokemonsArray$: Observable<any>[] = [];
         
         pokemons.results.forEach((pokemon: any) => {
-          const pokemon$: Observable<any> = this.getPokemonByName();
+          const pokemon$: Observable<any> = this.getPokemonByName(pokemon.name);
           pokemonsArray$.push(pokemon$);
         });
         
@@ -33,7 +33,7 @@ export class AppComponent {
   private getPokemons() {
     return this.http.get<any>(this.host + "/pokemon?offset=100&limit=100")
   }
-  private getPokemonByName() {
-      return this.http.get<any>(this.host + "/pokemon/" + "charmeleon");
+  private getPokemonByName(name: string) {
+      return this.http.get<any>(this.host + "/pokemon/" + name);
   }
 }
