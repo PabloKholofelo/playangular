@@ -31,7 +31,7 @@ export class AppComponent {
   
 
   private getPokemons() {
-    return this.http.get<any>(this.host + "/pokemon?offset=100&limit=100")
+    return this.http.get<any>(this.host + "/pokemon?offset=1&limit=1")
   }
   private getPokemonByName(name: string) {
       return this.http.get<any>(this.host + "/pokemon/" + name);
