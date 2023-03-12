@@ -23,9 +23,10 @@ export class AppComponent {
           });
           
           return forkJoin(pokemonsArray$);
+        })
         }).subscribe(x => {
-          console.log(x);
-        });
+          console.log(x) 
+      });
   }
   
 
